@@ -12,24 +12,25 @@ Este proyecto es el backend de una aplicación de chat en tiempo real utilizando
 
 ```bash
 git clone https://github.com/tu-usuario/tu-repo.git
-
+```
 2. En la raíz del proyecto
+```
 npm install
-
-3. Accedé a la carpeta del backend:
-
+```
+4. Accedé a la carpeta del backend:
+```
 cd backend
-
+```
 4. Instalá las dependencias:
-
+```
 npm install
-
+```
 5. Inicia el servidor en modo desarrollo
-
+```           
 npm run dev
+```
 
-
-## 📌 Puntos Clave del Proyecto
+##📌 Puntos Clave del Proyecto
 
 🔐 Registro e inicio de sesión de usuarios
 
@@ -43,11 +44,11 @@ npm run dev
 
 ⚙️ Manejo completo de eventos de socket, incluyendo:
 
-Usuarios conectados y desconectados
+* Usuarios conectados y desconectados
 
-Envío y guardado de mensajes
+* Envío y guardado de mensajes
 
-Envío de imagen de perfil
+* Envío de imagen de perfil
 
 🖼️ Carga y almacenamiento de imágenes de perfil como archivos estáticos
 
