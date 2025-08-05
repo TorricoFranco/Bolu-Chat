@@ -12,6 +12,7 @@
 <script type="module">
 
   import { io } from 'https://cdn.socket.io/4.3.2/socket.io.esm.min.js'
+  const API_URL = "<%= API_URL %>";
 
   const userOwn = '<%= username %>'
   const socket = io({
@@ -23,7 +24,7 @@
 
   // Profile IMAGE URL
   const URLOwn = localStorage.getItem('profileURL');
-  profileImage.src = `http://localhost:9999/uploads/${URLOwn}`
+  profileImage.src = `${API_URL}/uploads/${URLOwn}`
 
 
 
@@ -36,17 +37,17 @@
     console.log(msg)
 
     let newURL = url ? url : 'profile-default.jpg'
-    const chatImageURL = `http://localhost:9999/uploads/${newURL}`
+    const chatImageURL = `${API_URL}/uploads/${newURL}`
 
     // Perfil de usuario propio
     let isOwnMessage = username === userOwn;
 
     if (isOwnMessage && !url) {
       let localProfile = localStorage.getItem('profileURL')
-      chatImageURL = `http://localhost:9999/uploads/${localProfile}`
+      chatImageURL = `${API_URL}/uploads/${localProfile}`
     } else if (isOwnMessage && url) {
       localStorage.setItem('profileURL', url);
-      profileImage.src = `http://localhost:9999/uploads/${url}`;
+      profileImage.src = `${API_URL}/uploads/${url}`;
     }
 
 
@@ -89,7 +90,7 @@
       div.innerHTML = `
               <div class="online-user">
           <div class="avatar-container-user-connected">
-            <img src="http://localhost:9999/uploads/${user.url}" alt="${user.username}" class="avatar-user-connected">
+            <img src="<%= API_URL %>/uploads/${user.url}" alt="${user.username}" class="avatar-user-connected">
             <span class="status-indicator"></span>
           </div>
           <span class="username-user-connected">${user.username}</span>
@@ -108,7 +109,7 @@
       const div = document.createElement('div')
       div.classList.add('user')
       div.innerHTML = `
-      <img class="avatar" src= "http://localhost:9999/uploads/${user.profile_image}"  alt="${user.user}">
+      <img class="avatar" src= "<%= API_URL %>/uploads/${user.profile_image}"  alt="${user.user}">
       <div class="user-info">
         <div class="username">${user.user}</div>
         <div class="count">${user.count} mensajes</div>
@@ -124,11 +125,11 @@
   socket.on('batch messages', (mensajes) => {
     mensajes.forEach(({ msg, serverOffset, username, date, url }) => {
       const isOwnMessage = username === userOwn;
-      let profileImageURL = `http://localhost:9999/uploads/${url}`
+      let profileImageURL = `${API_URL}/uploads/${url}`
 
       if (isOwnMessage) {
         let localProfile = localStorage.getItem('profileURL')
-        profileImageURL = `http://localhost:9999/uploads/${localProfile}`
+        profileImageURL = `${API_URL}/uploads/${localProfile}`
 
       }
 
@@ -159,7 +160,7 @@
       gravity: "top",
       position: "right",
       backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-      avatar: `http://localhost:9999/uploads/${userConnected[user][0]}`,
+      avatar: `${API_URL}/uploads/${userConnected[user][0]}`,
       stopOnFocus: true,
     })
 
@@ -218,7 +219,7 @@
     formData.append("previusUserProfile", previusFile)
 
     try {
-      const response = await fetch("http://localhost:9999/chat/images", {
+      const response = await fetch(`${API_URL}/chat/images`, {
         method: "POST",
         body: formData,
       });
@@ -229,7 +230,7 @@
       // Actualizar la imagen de perfil en el frontend
       const profileImage = document.getElementById('profileImage');
       localStorage.setItem('profileURL', result.imageUrl);
-      profileImage.src = `http://localhost:9999/uploads/${result.imageUrl}`;
+      profileImage.src = `${API_URL}/uploads/${result.imageUrl}`;
 
     } catch (error) {
       console.error("Error al subir la imagen:", error);
@@ -531,7 +532,7 @@
 <body>
   <div class="profile">
     <h1>¡Bienvenido <%=username %>! a Bolu-Chat 🇦🇷</h1>
-    <img id="profileImage" src="http://localhost:9999/uploads/profile-default.jpg" alt="Imagen de perfil">
+    <img id="profileImage" src="<%= API_URL %>/uploads/profile-default.jpg" alt="Imagen de perfil">
   </div>
 
   <div class="main-container">

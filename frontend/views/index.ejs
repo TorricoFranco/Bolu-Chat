@@ -115,6 +115,7 @@
     </div>
 
     <script>
+        const API_URL = "<%= API_URL %>";
         const $ = el => document.querySelector(el)
 
         const loginForm = $('#login-form')
@@ -131,7 +132,7 @@
             const username = $('#login-username').value
             const password = $('#login-password').value
 
-            fetch('http://localhost:9999/auth/login', {
+            fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json'
@@ -165,7 +166,7 @@
                 return
             }
 
-            fetch('http://localhost:9999/auth/register', {
+            fetch(`${API_URL}/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -193,7 +194,7 @@
 
         logoutButton?.addEventListener('click', e => {
             e.preventDefault()
-            fetch('http://localhost:9999/auth/logout', {
+            fetch(`${API_URL}/auth/logout`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

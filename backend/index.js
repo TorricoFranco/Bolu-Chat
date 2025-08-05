@@ -18,6 +18,7 @@ app.use('/uploads', checkImageExists, serveUploads)
 
 app.set('view engine', 'ejs')
 app.set('views', '../frontend/views')
+app.locals.API_URL = process.env.FRONTEND_API_URL
 
 app.use(cookieParser())
 app.use(express.json())
@@ -32,5 +33,5 @@ routerIndex(app)
 const server = configureSocket(app)
 
 server.listen(PORT, () => {
-  console.log(`Server running on port http://localhost:/${PORT}`)
+  console.log(`Server running on port ${process.env.FRONTEND_API_URL}`)
 })
