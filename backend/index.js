@@ -27,7 +27,7 @@ app.use(express.json())
 
 app.use(cors({
   origin: isProduction
-    ? 'https://bolu-chat-production.up.railway.app/'
+    ? 'https://bolu-chat-production.up.railway.app'
     : 'http://localhost:3000',
   credentials: true
 }))
