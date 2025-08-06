@@ -136,8 +136,8 @@
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
-                    'credentials': 'include'
                 },
+                credentials: 'include',
                 body: JSON.stringify({ username, password })
             })
                 .then(res => {
@@ -171,8 +171,8 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'credentials': 'include'
                 },
+                credentials: 'include',
                 body: JSON.stringify({ username, password })
             })
                 .then((response) => response.json())
@@ -200,8 +200,8 @@
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
-                    'credentials': 'include'
-                }
+                },
+                credentials: 'include'
             })
                 .then(res => {
                     console.log(res);
