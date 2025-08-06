@@ -12,6 +12,8 @@ import { authMiddleware } from './middleware/authMiddleware.js'
 import { serveUploads } from './middleware/serverUpMiddleware.js'
 import { checkImageExists } from './middleware/checkImageExists.js'
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 const app = express()
 
 app.use('/uploads', checkImageExists, serveUploads)
@@ -22,7 +24,14 @@ app.locals.API_URL = process.env.FRONTEND_API_URL
 
 app.use(cookieParser())
 app.use(express.json())
-app.use(cors())
+
+app.use(cors({
+  origin: isProduction
+    ? 'https://bolu-chat-production.up.railway.app/'
+    : 'http://localhost:3000',
+  credentials: true
+}))
+
 app.use(logger('dev'))
 app.use(authMiddleware)
 
