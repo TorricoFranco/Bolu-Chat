@@ -3,6 +3,11 @@ import jwt from 'jsonwebtoken'
 import { SECRET_JWT_KEY, REFRESH_TOKEN_KEY } from '../config.js'
 import { validateUser } from '../schema/user-validation.js'
 
+const isProduction = process.env.NODE_ENV === 'production'
+
+console.log('NODE_ENV:', process.env.NODE_ENV)
+console.log('isProduction:', isProduction)
+
 export class AuthUserController {
   loadPage = async (req, res) => {
     const { user } = req.session
@@ -37,14 +42,14 @@ export class AuthUserController {
       res
         .cookie('access_token', token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'none',
+          secure: isProduction,
+          sameSite: isProduction ? 'none' : 'lax',
           maxAge: 1000 * 60 * 60
         })
         .cookie('refresh_token', refreshToken, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'none',
+          secure: isProduction,
+          sameSite: isProduction ? 'none' : 'lax',
           maxAge: 1000 * 60 * 60 * 24 * 7 // 7 días
         })
         .status(200)
@@ -71,14 +76,14 @@ export class AuthUserController {
       res
         .cookie('access_token', token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'none',
+          secure: isProduction,
+          sameSite: isProduction ? 'none' : 'lax',
           maxAge: 1000 * 60 * 60
         })
         .cookie('refresh_token', refreshToken, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'none',
+          secure: isProduction,
+          sameSite: isProduction ? 'none' : 'lax',
           maxAge: 1000 * 60 * 60 * 24 * 7 // 7 días
         })
         .send({ user, token })
