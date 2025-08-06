@@ -25,6 +25,10 @@ app.locals.API_URL = process.env.FRONTEND_API_URL
 app.use(cookieParser())
 app.use(express.json())
 
+console.log('isProduction:', isProduction)
+console.log('FRONTEND_API_URL:', process.env.FRONTEND_API_URL)
+console.log(process.env.FRONTEND_API_URL)
+
 app.use(cors({
   origin: isProduction
     ? 'https://bolu-chat-production.up.railway.app'
