@@ -135,7 +135,8 @@
             fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
-                    'Content-type': 'application/json'
+                    'Content-type': 'application/json',
+                    'credentials': 'include'
                 },
                 body: JSON.stringify({ username, password })
             })
@@ -169,7 +170,8 @@
             fetch(`${API_URL}/auth/register`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'credentials': 'include'
                 },
                 body: JSON.stringify({ username, password })
             })
@@ -197,7 +199,8 @@
             fetch(`${API_URL}/auth/logout`, {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'credentials': 'include'
                 }
             })
                 .then(res => {
