@@ -4,7 +4,7 @@ import path from 'path'
 export const deletePreviousFileMiddleware = (req, res, next) => {
   const previusFile = req.body.previusUserProfile
 
-  if (!previusFile || previusFile === 'profile_default.jpg') return next() // No hay archivo anterior, seguir
+  if (!previusFile || previusFile === 'profile-default.jpg') return next() // No hay archivo anterior, seguir
 
   // Si vino como "/uploads/archivo.jpg", extraemos solo el nombre
   const fileName = path.basename(previusFile)
