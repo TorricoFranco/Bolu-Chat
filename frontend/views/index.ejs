@@ -76,6 +76,7 @@
                 <h2>Hola <%= username %>!</h2>
                 <p>Estas en el panel de administración</p>
                 <button id="close-session">Cerrar sesión</button>
+                <button id="return-chat">Ir al chat grupal</button>
             </div>
             <% } %>
 
@@ -126,6 +127,7 @@
         const registerSpan = $('#register-form span')
 
         const logoutButton = $('#close-session')
+        const returnChatButton = $('#return-chat')
 
         loginForm?.addEventListener('submit', e => {
             e.preventDefault()
@@ -210,6 +212,10 @@
                 })
         })
 
+        returnChatButton?.addEventListener('click', e => {
+            e.preventDefault()
+            window.location.href = '/chat'
+        })
 
     </script>
 
