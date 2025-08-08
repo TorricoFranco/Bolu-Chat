@@ -25,8 +25,15 @@
 
     .container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row-reverse;
         align-items: center;
+    }
+
+
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+        }
     }
 
     .form-container {
