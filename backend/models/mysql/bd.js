@@ -15,7 +15,6 @@ const pool = mysql.createPool({
 setInterval(async () => {
   try {
     await pool.query('SELECT 1')
-    console.log('Ping DB OK')
   } catch (err) {
     console.error('Error en ping DB:', err)
   }
