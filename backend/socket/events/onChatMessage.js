@@ -10,7 +10,7 @@ export const onChatMessage = (socket, io, countMessages) => {
       const result = await MessageChat.create({ msg: wordsFilters, username })
       const lastRowId = await MessageChat.lastInsertRowId()
       const URLProfile = await AuthUserModel.recoverImageProfile({ username })
-      const formattedTime = new Date(result.created_at).toLocaleTimeString()
+      const formattedTime = new Date(result.created_at)
 
       await MessageChat.uploadCountMessages({ username })
 

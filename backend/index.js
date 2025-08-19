@@ -20,6 +20,8 @@ app.use('/uploads', checkImageExists, serveUploads)
 
 app.set('view engine', 'ejs')
 app.set('views', '../frontend/views')
+app.use(express.static('../frontend/public'))
+
 app.locals.API_URL = process.env.FRONTEND_API_URL
 
 app.use(cookieParser())

@@ -1,0 +1,68 @@
+<!-- ...existing code... -->
+<% // safe defaults to avoid ReferenceError var username=(typeof username !=='undefined' ) ? username : '' ; var
+    profileUrl=(typeof profileUrl !=='undefined' ) ? profileUrl : '' ; var roomTitle=(typeof roomTitle !=='undefined' )
+    ? roomTitle : 'Sala general' ; var API=(typeof API_URL !=='undefined' ) ? API_URL : (app && app.locals &&
+    app.locals.API_URL ? app.locals.API_URL : '' ); %>
+
+    <div class="app-wrap">
+        <div class="chat-layout">
+            <aside class="chat-sidebar">
+                <div class="profile-block">
+                    <img id="profileImage" class="profile-img"
+                        src="<%= profileUrl ? (API + '/uploads/' + profileUrl) : '/uploads/profile-default.jpg' %>"
+                        alt="profile" />
+                    <div class="profile-meta">
+                        <div class="name">
+                            <%= username || 'Usuario' %>
+                        </div>
+                        <div class="status">Conectado</div>
+                    </div>
+                </div>
+
+                <form id="uploadForm" enctype="multipart/form-data" novalidate>
+                    <label class="upload-label" for="userProfile">
+                        Subir imagen
+                        <input id="userProfile" name="userProfile" type="file" accept="image/*">
+                    </label>
+                </form>
+
+                <section class="sidebar-section">
+                    <div class="title">Conectados</div>
+                    <div class="online-user-list" aria-live="polite"></div>
+                </section>
+
+                <section class="sidebar-section">
+                    <div class="title">Top usuarios</div>
+                    <div class="user-list"></div>
+                </section>
+            </aside>
+
+            <main class="chat-main" role="main">
+                <header class="chat-top">
+                    <div>
+                        <div class="room-title">
+                            <%= roomTitle %>
+                        </div>
+                        <div class="room-sub">Chat grupal • Mensajes guardados</div>
+                    </div>
+                </header>
+
+                <ul id="messages" class="messages" aria-live="polite"></ul>
+
+                <form id="form" class="chat-input" autocomplete="off" onsubmit="return false;">
+                    <button type="button" class="btn-attach" title="Adjuntar imagen" aria-label="Adjuntar imagen">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 8v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8"></path>
+                            <path d="M7 8V4a4 4 0 0 1 4-4h2"></path>
+                        </svg>
+                    </button>
+
+                    <input id="input" name="message" class="input-text" placeholder="Escribí un mensaje..."
+                        autocomplete="off" />
+
+                    <button id="send-btn" class="btn-send" type="submit">Enviar</button>
+                </form>
+            </main>
+        </div>
+    </div>

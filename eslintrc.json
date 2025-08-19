@@ -1,0 +1,38 @@
+{
+    "root": true,
+    "env": {
+        "es2021": true
+    },
+    "overrides": [
+        {
+            "files": [
+                "backend/**/*.js"
+            ],
+            "env": {
+                "node": true,
+                "browser": false
+            },
+            "rules": {
+                "indent": [
+                    "error",
+                    2
+                ]
+            }
+        },
+        {
+            "files": [
+                "frontend/**/*.js"
+            ],
+            "env": {
+                "browser": true,
+                "node": false
+            },
+            "rules": {
+                "indent": [
+                    "error",
+                    2
+                ]
+            }
+        }
+    ]
+}
