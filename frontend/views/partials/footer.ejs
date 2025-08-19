@@ -8,5 +8,20 @@
             <small>Hecho con ♥ · <a href="https://github.com/" target="_blank" rel="noopener">Repositorio</a></small>
         </div>
     </div>
+
+    <div style="margin-top:20px; text-align:center; margin-bottom: 30px;">
+
+        <h2>Apoyá el proyecto con una donación 😊😁🙌 </h2>
+        <div id="loading" style=" display:none ;text-align:center;">
+            <p>Procesando pago, por favor espera...</p>
+            <img src="<%= API_URL %>/uploads/loader.gif" alt="Cargando..." width="50">
+        </div>
+        <form id="donation-form" style="display:flex;gap:8px;align-items:center; justify-content:center;">
+            <input type="number" step="0.01" min="50" class="mp-amount" placeholder="Monto en ARS" id="donation-amount"
+                required style="padding:8px;border:1px solid #ccc;border-radius:5px;">
+            <button id="process-checkout" class="mp-button" type="submit">Donar con Mercado Pago</button>
+        </form>
+    </div>
+
 </footer>
 <!-- ...existing code... -->
