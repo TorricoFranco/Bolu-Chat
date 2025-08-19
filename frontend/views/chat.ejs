@@ -11,6 +11,45 @@
 
 
         <script>
+          document.getElementById('process-checkout').addEventListener('click', async (e) => {
+            e.preventDefault()
+            const amount = Number(document.getElementById('donation-amount').value)
+            if (!amount || amount <= 0) return
+
+            const prodct = {
+              title: "Donación a Bolu-Chat",
+              unit_price: amount,
+              quantity: 1,
+            }
+            console.log(`${API_URL}/donations/create_payment`)
+
+            try {
+              document.getElementById("loading").style.display = "block"
+              const res = await fetch(`${API_URL}/donations/create_payment`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(prodct)
+              })
+              const data = await res.json()
+
+              if (res.ok) {
+                window.open(data.payment_url, "_blank");
+                document.getElementById('donation-amount').value = ''
+              } else {
+                alert('No se pudo iniciar el pago')
+                console.log(data.error)
+              }
+            } catch (err) {
+              console.error('Error iniciando donación', err)
+              alert('No se pudo iniciar el pago')
+            } finally {
+              document.getElementById("loading").style.display = "none"
+            }
+          })
+        </script>
+        <script>
           window.API_URL = "<%= API_URL %>";
           window.userOwn = '<%= username %>'
         </script>

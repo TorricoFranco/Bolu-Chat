@@ -1,0 +1,69 @@
+/* ...existing code... */
+
+/* Mercado Pago / Donación - botón responsive */
+.mp-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 12px;
+  width: 100%;
+}
+
+/* input monto */
+.mp-amount {
+  width: 140px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(15,23,42,0.06);
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+}
+.mp-amount:focus { box-shadow: 0 8px 28px rgba(79,70,229,0.04); border-color: rgba(79,70,229,0.18); }
+
+/* botón principal MP */
+.mp-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00a650 0%, #00d66a 100%); /* tonos verdes MercadoPago-like */
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0,166,80,0.14);
+  transition: transform .08s ease, box-shadow .12s ease, opacity .12s;
+  white-space: nowrap;
+}
+.mp-button:hover { box-shadow: 0 12px 26px rgba(0,166,80,0.18); }
+.mp-button:active { transform: translateY(1px); opacity: .98; }
+
+/* ícono dentro del botón */
+.mp-button .mp-icon { width: 18px; height: 18px; display: inline-block; }
+
+/* variante pequeña (por ejemplo para barras laterales) */
+.mp-button--sm { padding: 8px 10px; font-size: 13px; border-radius: 8px; }
+
+/* comportamiento responsive: en móvil el contenedor queda centrado y el botón ocupa todo el ancho disponible */
+@media (max-width: 980px) {
+  .mp-container {
+    justify-content: center;
+    padding: 8px 12px;
+  }
+  .mp-amount { width: 110px; }
+  .mp-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+  /* si quieres que el input quede encima del botón en móvil */
+  .mp-container.stack-mobile {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .mp-container.stack-mobile .mp-amount { width: 100%; margin-bottom: 8px; }
+  .mp-container.stack-mobile .mp-button { width: 100%; }
+}
