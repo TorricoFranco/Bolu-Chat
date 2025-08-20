@@ -35,5 +35,7 @@ document.getElementById('userProfile').addEventListener('change', async function
     profileImage.src = `${API_URL}/uploads/${result.imageUrl}`
   } catch (error) {
     console.error('Error al subir la imagen:', error)
+  } finally {
+    location.reload()
   }
 })
