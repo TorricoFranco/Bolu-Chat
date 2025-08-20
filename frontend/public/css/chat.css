@@ -142,15 +142,20 @@ a { color: inherit; text-decoration: none; }
 
 /* Responsiveness */
 @media (max-width: 980px) {
-  .chat-layout { grid-template-columns: 1fr; height: calc(100vh - 120px); }
-  .chat-sidebar { order: 2; } /* oculto en móvil para dar prioridad al chat */
+  .chat-layout { grid-template-columns: 1fr; }
+  .chat-sidebar { 
+    order: 2;
+    height: 40vh;
+   } /* oculto en móvil para dar prioridad al chat */
   .chat-main { order:1; 
-    border: 1px solid;
     height: 70vh;
   }
   #messages.messages { padding: 14px 12px 0px 12px; }
   .app-wrap { padding:8px; margin:12px; }
-  .site-footer .footer-inner { flex-direction:column; gap:8px; }
+  .site-footer .footer-inner { 
+    flex-direction:column; gap:8px; 
+    margin-top: 150px;
+  }
 }
 
 /* Scrollbars más discretos */
