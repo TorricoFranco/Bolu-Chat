@@ -12,6 +12,7 @@ import { authMiddleware } from './middleware/authMiddleware.js'
 import { serveUploads } from './middleware/serverUpMiddleware.js'
 import { checkImageExists } from './middleware/checkImageExists.js'
 
+
 const isProduction = process.env.NODE_ENV === 'production'
 
 const app = express()
