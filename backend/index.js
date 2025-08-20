@@ -13,11 +13,6 @@ import { serveUploads } from './middleware/serverUpMiddleware.js'
 import { checkImageExists } from './middleware/checkImageExists.js'
 
 
-// PROBANDO
-console.log("🔑 VEXOR_PUBLISHABLEKEY:", process.env.VEXOR_PUBLISHABLEKEY);
-console.log("📦 VEXOR_PROJECTID:", process.env.VEXOR_PROJECTID);
-console.log("🕵️ VEXOR_SECRETKEY:", process.env.VEXOR_SECRETKEY);
-
 const isProduction = process.env.NODE_ENV === 'production'
 
 const app = express()
