@@ -144,7 +144,10 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 980px) {
   .chat-layout { grid-template-columns: 1fr; height: calc(100vh - 120px); }
   .chat-sidebar { order: 2; } /* oculto en móvil para dar prioridad al chat */
-  .chat-main { order:1; }
+  .chat-main { order:1; 
+    border: 1px solid;
+    height: 70vh;
+  }
   #messages.messages { padding: 14px 12px 0px 12px; }
   .app-wrap { padding:8px; margin:12px; }
   .site-footer .footer-inner { flex-direction:column; gap:8px; }
