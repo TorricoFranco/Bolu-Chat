@@ -9,8 +9,12 @@
 
       <%- include('partials/footer') %>
 
-
         <script>
+          window.API_URL = "<%= API_URL %>";
+          window.userOwn = '<%= username %>'
+        </script>
+        <script>
+          const API_URL = window.API_URL || 'http://localhost:3000'
           document.getElementById('process-checkout').addEventListener('click', async (e) => {
             e.preventDefault()
             const amount = Number(document.getElementById('donation-amount').value)
@@ -48,10 +52,6 @@
               document.getElementById("loading").style.display = "none"
             }
           })
-        </script>
-        <script>
-          window.API_URL = "<%= API_URL %>";
-          window.userOwn = '<%= username %>'
         </script>
         <script src="/js/socket_connection.js" type="module"></script>
         <script src="/js/uploadProfile.js"></script>
