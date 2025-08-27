@@ -52,17 +52,20 @@ socket.on('chat message', ({ msg, serverOffset, username, date, url }) => {
     profileImage.src = `${API_URL}/uploads/${url}`;
   }
 
-const item = `
-  <li class="message ${isOwnMessage ? 'message-right' : ''}">
-      <img src="${chatImageURL}" class="profileChat" />
+  const p = document.createElement('p')
+  p.textContent = msg
+
+  const item = `
+    <li class="message ${isOwnMessage ? 'message-right' : ''}">
+        <img src="${chatImageURL}" class="profileChat" />
         <div>
             <small>${username} - ${dateFormat}</small>
-            <p>${msg}</p>
-            </div>
-        </li> 
-    `;
+            ${p.outerHTML}
+        </div>
+    </li> 
+  `;
 
-    messages.insertAdjacentHTML('beforeend', item);
+  messages.insertAdjacentHTML('beforeend', item)
     socket.auth.serverOffset = serverOffset;
     messages.scrollTop = messages.scrollHeight;
 });
@@ -78,12 +81,12 @@ form.addEventListener('submit', (e) => {
 
 socket.on('users-online', (usersOnline) => {
   const usersList = document.querySelector('.online-user-list')
-  usersList.innerHTML = ""
+  usersList.textContent = ""
   const newUsersOnline = usersOnline.filter(user => user.username !== userOwn)
 
   newUsersOnline.forEach(user => {
     const div = document.createElement('div')
-    div.innerHTML = `
+    div.textContent = `
           <div class="online-user">
       <div class="avatar-container-user-connected">
         <img src= "${API_URL}/uploads/${user.url}" alt="${user.username}" class="avatar-user-connected">
@@ -121,6 +124,7 @@ socket.on('batch messages', (mensajes) => {
       mensajes.forEach(({ msg, serverOffset, username, date, url }) => {
         const isOwnMessage = username === userOwn;
         let profileImageURL = `${API_URL}/uploads/${url}`
+        const dateFormat = formatDate(date)
 
         if (isOwnMessage) {
           let localProfile = localStorage.getItem('profileURL')
@@ -128,17 +132,22 @@ socket.on('batch messages', (mensajes) => {
 
         }
 
-        const item = `
-      <li class="message ${isOwnMessage ? 'message-right' : ''}">
-        <img src="${profileImageURL}" class="profileChat" />
-        <div>
-          <small>${username} - ${date}</small>
-          <p>${msg}</p>
-        </div>
-      </li>
-    `;
+        const p = document.createElement('p')
+        p.textContent = msg
 
-        messages.insertAdjacentHTML('beforeend', item);
+
+        const item = `
+          <li class="message ${isOwnMessage ? 'message-right' : ''}">
+              <img src="${profileImageURL}" class="profileChat" />
+              <div>
+                  <small>${username} - ${dateFormat}</small>
+                  ${p.outerHTML}
+              </div>
+          </li> 
+        `;
+
+        messages.insertAdjacentHTML('beforeend', item)
+
         socket.auth.serverOffset = serverOffset;
       });
 
