@@ -11,7 +11,7 @@ export const onBatchMessages = async (socket) => {
       msg: row.content,
       serverOffset: row.id.toString(),
       username: row.user,
-      date: new Date(row.created_at).toLocaleTimeString(),
+      date: row.created_at,
       url: row.profile_image
     }))
 
