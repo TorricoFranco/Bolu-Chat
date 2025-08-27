@@ -3,8 +3,13 @@ import { filterWords } from '../../utils/filterWords.js'
 
 export const onChatMessage = (socket, io, countMessages) => {
   socket.on('chat message', async (msg) => {
+    const MAX_LENGTH = 25
     const wordsFilters = filterWords(msg)
     const username = socket.handshake.auth.username ?? 'Anonymous'
+
+    if (wordsFilters.length > MAX_LENGTH) {
+      return socket.emit('errorMessage', `El mensaje es demasiado largo. Máximo ${MAX_LENGTH} caracteres.`)
+    }
 
     try {
       const result = await MessageChat.create({ msg: wordsFilters, username })
