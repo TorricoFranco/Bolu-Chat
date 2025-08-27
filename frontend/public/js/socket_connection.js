@@ -23,8 +23,8 @@ const messages = document.getElementById('messages')
 const formatDate = (date) => {
     
     const localDate = new Date(date)
-    console.log(localDate)
-    console.log("Local Date:", localDate.toLocaleTimeString());
+    // console.log(localDate)
+    // console.log("Local Date:", localDate.toLocaleTimeString());
     
     
     const hours = localDate.getHours().toString().padStart(2, "0")
@@ -83,7 +83,6 @@ socket.on('users-online', (usersOnline) => {
 
   newUsersOnline.forEach(user => {
     const div = document.createElement('div')
-    console.log('url', user.url)
     div.innerHTML = `
           <div class="online-user">
       <div class="avatar-container-user-connected">
@@ -149,8 +148,8 @@ socket.on('batch messages', (mensajes) => {
 // MENSAJE PARA EL WACHIN QUE ME QUIERA SPAMEAR
 
 socket.on('errorMessage', (msg) => {
-
-  alert("A tuuu casaaa pa, que te pensas que no lo voy a validar desde el back wachin")
+  alert(msg)
+  console.log("A tuuu casaaa pa, que te pensas que no lo voy a validar desde el back wachin")
 })
 
 
