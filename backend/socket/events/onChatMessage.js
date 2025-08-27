@@ -2,12 +2,49 @@ import { MessageChat, AuthUserModel } from '../../models/mysql/auth-user.model.j
 import { filterWords } from '../../utils/filterWords.js'
 
 export const onChatMessage = (socket, io, countMessages) => {
+  const MAX_LENGTH = 40
+  // Rate limiting
+  const MAX_MESSAGES = 5
+  const WINDOW_MS = 2000 
+  const MAX_VIOLATIONS = 3   
+  const VIOLATION_RESET_MS = 60000
+
+  let messageCount = 0 
+  let countDisconnectSocket = 0
+
+  let lastReset = Date.now()
+  
   socket.on('chat message', async (msg) => {
-    const MAX_LENGTH = 25
+    
+    const now = Date.now()
+
+    // Reiniciar contador si pasó la ventana
+    if (now - lastReset > WINDOW_MS) {
+      messageCount = 0
+      lastReset = now
+    }
+
+    messageCount++
+
+    // Si supera el límite, desconectar o ignorar
+    if (messageCount > MAX_MESSAGES) {
+      countDisconnectSocket++
+      socket.emit('errorMessage', 'Demasiados mensajes enviados. Espera un momento.')
+      messageCount = 0
+  
+      if(countDisconnectSocket > MAX_VIOLATIONS) {
+        console.log(`[DISCONNECT] Usuario ${socket.handshake.auth.username ?? 'Anonymous'} desconectado por spam`)
+        return socket.disconnect()
+      }
+
+      return
+    }
+    
     const wordsFilters = filterWords(msg)
     const username = socket.handshake.auth.username ?? 'Anonymous'
 
     if (wordsFilters.length > MAX_LENGTH) {
+      console.log(`[WARN] Usuario ${username} intentó enviar mensaje demasiado largo: ${wordsFilters.length} caracteres`)
       return socket.emit('errorMessage', `El mensaje es demasiado largo. Máximo ${MAX_LENGTH} caracteres.`)
     }
 
@@ -30,5 +67,9 @@ export const onChatMessage = (socket, io, countMessages) => {
     } catch (e) {
       console.log(e)
     }
+
+    setTimeout(() => {
+      countDisconnectSocket = Math.max(countDisconnectSocket - 1, 0)
+    }, VIOLATION_RESET_MS)
   })
 }
