@@ -146,6 +146,15 @@ socket.on('batch messages', (mensajes) => {
       messages.scrollTop = messages.scrollHeight;
 });
 
+// MENSAJE PARA EL WACHIN QUE ME QUIERA SPAMEAR
+
+socket.on('errorMessage', (msg) => {
+
+  alert("A tuuu casaaa pa, que te pensas que no lo voy a validar desde el back wachin")
+})
+
+
+
 // MENSAJE USUARIO SE CONECTO
 
 socket.on('user-connected', (user, userConnected) => {
