@@ -40,6 +40,8 @@ npm run dev
 
 ♻️ Manejo de refresh tokens para mantener la sesión activa
 
+💳 Integración con Mercado Pago como pasarela de pagos para apoyar al desarrollador 😁
+
 💬 Chat grupal en tiempo real mediante comunicación bidireccional con Socket.IO
 
 ⚙️ Manejo completo de eventos de socket, incluyendo:
@@ -62,8 +64,6 @@ npm run dev
 
 
 ## 🚧 Próximamente
-
-💳 Integración con Mercado Pago como pasarela de pagos para apoyar al desarrollador 😁
 
 🔐 Inicio de sesión con Google
 
