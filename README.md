@@ -11,7 +11,7 @@ Este proyecto es el backend de una aplicación de chat en tiempo real utilizando
 1. Cloná el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/tu-repo.git
+git clone https://github.com/TorricoFranco/Bolu-Chat
 ```
 2. En la raíz del proyecto
 ```
