@@ -1,11 +1,16 @@
 import mysql from 'mysql2/promise'
 
+// host: process.env.DB_HOST,
+// user: process.env.DB_USER,
+// port: process.env.DB_PORT,
+// password: process.env.DB_PASS,
+// database: process.env.DB_NAME,
 const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  port: process.env.DB_PORT,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  host: "localhost",
+  port: 8888,
+  user: "root",
+  password: "TorricoGelp22",
+  database: "authUserdb",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
@@ -21,3 +26,4 @@ setInterval(async () => {
 }, 60000)
 
 export default pool
+
