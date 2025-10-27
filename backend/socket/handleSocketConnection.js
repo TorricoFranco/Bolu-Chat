@@ -5,7 +5,7 @@ import { onBatchMessages } from './events/onBatchMessages.js'
 import { MessageChat } from '../models/mysql/auth-user.model.js'
 
 export const handleSocketConnection = async (socket, io) => {
-  const username = socket.handshake.auth.username
+  const username = socket.handshake.auth?.username 
   console.log('User connected:', username)
 
   await onConnect(socket, io)
