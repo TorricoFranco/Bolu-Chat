@@ -10,6 +10,7 @@ export class AuthUserController {
     res.status(200).render('index', user)
   }
 
+
   register = async (req, res) => {
     const { username, password } = req.body
     // VALIDACIONES
@@ -89,16 +90,15 @@ export class AuthUserController {
   }
 
   logout = async (req, res) => {
-  // limpiar cookie
-    res
-      .clearCookie('refresh_token')
-      .clearCookie('access_token')
-      .json({ message: 'Logout successful' })
+    try {
+      res
+        .clearCookie('refresh_token')
+        .clearCookie('access_token')
+        .status(200)
+        .json({ message: 'Logout successful' })
+    } catch (err) {
+      console.error('Error en logout:', err)
+      res.status(500).json({ success: false, message: 'Error al cerrar sesión' })
+    }
   }
-
-  // protected = async (req, res) => {
-  //   const { user } = req.session
-  //   if (!user) return res.status(403).send('Access not authorized')
-  //   res.render('protected', user)
-  // }
 }

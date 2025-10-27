@@ -10,8 +10,11 @@ export const configureSocket = (app) => {
   })
 
   io.on('connection', (socket) => {
-    handleSocketConnection(socket, io)
+    try {
+      handleSocketConnection(socket, io)
+    } catch (err) {
+      console.error('❌ Error en handleSocketConnection:', err)
+    }
   })
-
   return server
 }

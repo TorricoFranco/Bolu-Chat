@@ -7,6 +7,7 @@ export const routerIndex = (app) => {
   const router = Router()
 
   app.use('/', router)
+  
   router.get('/', (req, res) => {
     res.status(200).redirect('/auth')
   })
