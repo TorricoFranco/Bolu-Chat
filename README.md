@@ -64,6 +64,8 @@ npm run dev
 
 📄 Documentación de los Endpoint con Swagger Open Api 3.0
 
+🧪 Test Unitarios y de integración
+
 ## Documentación de la API
 
 La documentación de la API se realizó con **Swagger**, está disponible en **modo development**.  
@@ -108,8 +110,7 @@ npx jest --runInBand --detectOpenHandles nombreDelTest.test.js
 
 # Ejemplo con varios clientes para el test de conexión múltiple
 $env:NUM_CLIENTS=10; npm run test multiConnectionBasic.test.js
-
-
+```
 
 
 ## 🚧 Próximamente
